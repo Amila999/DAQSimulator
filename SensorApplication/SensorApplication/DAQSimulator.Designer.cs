@@ -37,9 +37,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -82,17 +82,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 13);
+            this.label1.Size = new System.Drawing.Size(129, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Next Sampling Time";
+            this.label1.Text = "Next Sampling Time (Sec)";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(124, 26);
+            this.textBox1.Location = new System.Drawing.Point(141, 27);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(53, 20);
             this.textBox1.TabIndex = 2;
             this.textBox1.Tag = "txtNextSamplingTime";
+            this.textBox1.Text = "5.5";
             // 
             // button1
             // 
@@ -127,23 +128,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Logging";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Next Logging Time";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(124, 26);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Tag = "txtNextLoggingTime";
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(72, 71);
@@ -152,6 +136,24 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Logging on File";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(141, 26);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(53, 20);
+            this.textBox2.TabIndex = 1;
+            this.textBox2.Tag = "txtNextLoggingTime";
+            this.textBox2.Text = "43";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Next Logging Time (Sec)";
             // 
             // groupBox3
             // 
