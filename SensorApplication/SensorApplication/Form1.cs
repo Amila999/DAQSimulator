@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SensorApplication
@@ -16,6 +9,31 @@ namespace SensorApplication
         {
             InitializeComponent();
         }
+
+        string analogS;
+        string digitalS;
+
+        public void runLoop(int analogSCount, int digitalSCount)
+        {
+            for (int i = 0; i < analogSCount; i++)
+            {
+                analogS = analogS + "Analog Sensor " + (i + 1) + "\n\n";
+            } 
+            
+            for (int i = 0; i < digitalSCount; i++)
+            {
+                digitalS = digitalS + "Digital Sensor " + (i + 1) + "\n\n";
+            }
+            dAQSimulator.txtSensorNames.Text = analogS + "\n\n" + digitalS;
+        }
+
+        public Form1(DAQSimulator fr)
+        {
+            InitializeComponent();
+            dAQSimulator = fr;
+        }
+
+        DAQSimulator dAQSimulator = new DAQSimulator();
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -39,9 +57,32 @@ namespace SensorApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            DAQSimulator dAQSimulator = new DAQSimulator();
             dAQSimulator.Show();
+            dAQSimulator.numAnalogSensorDevices.Text = txtAnalogSensorDevices.Text;
+            dAQSimulator.numDigitalSensorDevices.Text = txtDigitalSensorDevices.Text;
+            dAQSimulator.numLowerVoltage.Text = txtLowerVoltage.Text;
+            dAQSimulator.numUpperVoltage.Text = txtUpperVoltage.Text;
+            dAQSimulator.numDAQResolution.Text = txtDAQResolution.Text;
+
+            //Generate sensor names string
+
+            int analogSensorCount = int.Parse(txtAnalogSensorDevices.Text);
+            int digitalSensorCount = int.Parse(txtDigitalSensorDevices.Text);
+
+            runLoop(analogSensorCount, digitalSensorCount);
+
+            this.Hide();
+
+        }
+
+        private void txtAnalogSensorDevices_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
