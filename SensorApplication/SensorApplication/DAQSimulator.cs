@@ -12,6 +12,7 @@ namespace SensorApplication
         {
             InitializeComponent();
             btnStopSampling.Enabled = false;
+            btnLoggingOnFile.Enabled = false;
         }
 
         Random random = new Random();
@@ -70,15 +71,23 @@ namespace SensorApplication
         private void btnGetSampling_Click(object sender, EventArgs e)
         {
 
-            btnGetSampling.Enabled = false;
-            btnStopSampling.Enabled = true;
-            timerSample = new System.Timers.Timer();
-            timerSample.Interval = double.Parse(txtNextSamplingTime.Text) * 1000;
-            timerSample.Elapsed += OnTimeEvent;
-            timerSample.Start();
+            if (!String.IsNullOrEmpty(txtNextSamplingTime.Text) & !String.IsNullOrEmpty(txtNextLoggingTime.Text))
+            {
+                btnGetSampling.Enabled = false;
+                btnStopSampling.Enabled = true;
+                timerSample = new System.Timers.Timer();
+                timerSample.Interval = double.Parse(txtNextSamplingTime.Text) * 1000;
+                timerSample.Elapsed += OnTimeEvent;
+                timerSample.Start();
 
-            double loggingTime = double.Parse(txtNextLoggingTime.Text) * 1000;
-            
+                double loggingTime = double.Parse(txtNextLoggingTime.Text) * 1000;
+            }
+
+            else
+            {
+                // Make a message box if any of the text fields are empty
+                MessageBox.Show("Please input text in all input fields", "Input Information", MessageBoxButtons.OK);
+            }
         }
 
         private void OnTimeEvent(object sender, ElapsedEventArgs e)
@@ -92,6 +101,7 @@ namespace SensorApplication
 
             if (newValue > previousValue & tempDataForLogginReady != null)
             {
+                btnLoggingOnFile.Enabled = true;
                 String TodayTime = DateTime.Now.ToLongTimeString();
                 DataForLogginReady = TodayTime + "," + tempDataForLogginReady;
                 if (LogginData != null)
@@ -124,36 +134,46 @@ namespace SensorApplication
 
         private void LoggingOnFile_Click(object sender, EventArgs e)
         {
-            loggingTime = double.Parse(txtNextLoggingTime.Text) * 1000;
-
-            if (LogginData != null) 
+            if (!String.IsNullOrEmpty(txtNextSamplingTime.Text) & !String.IsNullOrEmpty(txtNextLoggingTime.Text))
             {
-                if (path == null)
+                loggingTime = double.Parse(txtNextLoggingTime.Text) * 1000;
+
+                if (LogginData != null)
                 {
-                    SaveFileDialog saveFileDialog = new SaveFileDialog();
-                    saveFileDialog.InitialDirectory = @"C:\Desktop";
-                    saveFileDialog.Title = "Save your file, pick name and location";
-                    saveFileDialog.DefaultExt = "csv";
-                    saveFileDialog.Filter = "CSV file (*.csv)|*.csv| All Files (*.*)|*.*";
-                    saveFileDialog.RestoreDirectory = true;
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    if (path == null)
                     {
-                        using (StreamWriter file = new StreamWriter(saveFileDialog.FileName, true))
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.InitialDirectory = @"C:\Desktop";
+                        saveFileDialog.Title = "Save your file, pick name and location";
+                        saveFileDialog.DefaultExt = "csv";
+                        saveFileDialog.Filter = "CSV file (*.csv)|*.csv| All Files (*.*)|*.*";
+                        saveFileDialog.RestoreDirectory = true;
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
-                            path = Path.GetFullPath(saveFileDialog.FileName);
+                            using (StreamWriter file = new StreamWriter(saveFileDialog.FileName, true))
+                            {
+                                path = Path.GetFullPath(saveFileDialog.FileName);
+                                file.WriteLine(LogginData);
+                                LogginData = null;
+                                btnLoggingOnFile.Enabled = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (StreamWriter file = new StreamWriter(path, true))
+                        {
                             file.WriteLine(LogginData);
                             LogginData = null;
+                            btnLoggingOnFile.Enabled = false;
                         }
                     }
                 }
-                else 
-                {
-                    using (StreamWriter file = new StreamWriter(path, true))
-                    {
-                        file.WriteLine(LogginData);
-                        LogginData = null;
-                    }
-                }
+            }
+            else
+            {
+                // Make a message box if any of the text fields are empty
+                MessageBox.Show("Please input text in all input fields", "Input Information", MessageBoxButtons.OK);
             }
         }
     }

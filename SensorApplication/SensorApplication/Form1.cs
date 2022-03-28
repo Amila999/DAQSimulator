@@ -57,22 +57,30 @@ namespace SensorApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dAQSimulator.Show();
-            dAQSimulator.numAnalogSensorDevices.Text = txtAnalogSensorDevices.Text;
-            dAQSimulator.numDigitalSensorDevices.Text = txtDigitalSensorDevices.Text;
-            dAQSimulator.numLowerVoltage.Text = txtLowerVoltage.Text;
-            dAQSimulator.numUpperVoltage.Text = txtUpperVoltage.Text;
-            dAQSimulator.numDAQResolution.Text = txtDAQResolution.Text;
+            if (!string.IsNullOrEmpty(txtAnalogSensorDevices.Text) & !string.IsNullOrEmpty(txtDigitalSensorDevices.Text) & !string.IsNullOrEmpty(txtLowerVoltage.Text) & !string.IsNullOrEmpty(txtUpperVoltage.Text) & !string.IsNullOrEmpty(txtDAQResolution.Text))
+            {
+                dAQSimulator.numAnalogSensorDevices.Text = txtAnalogSensorDevices.Text;
+                dAQSimulator.numDigitalSensorDevices.Text = txtDigitalSensorDevices.Text;
+                dAQSimulator.numLowerVoltage.Text = txtLowerVoltage.Text;
+                dAQSimulator.numUpperVoltage.Text = txtUpperVoltage.Text;
+                dAQSimulator.numDAQResolution.Text = txtDAQResolution.Text;
 
-            //Generate sensor names string
+                //Generate sensor names string
 
-            int analogSensorCount = int.Parse(txtAnalogSensorDevices.Text);
-            int digitalSensorCount = int.Parse(txtDigitalSensorDevices.Text);
+                int analogSensorCount = int.Parse(txtAnalogSensorDevices.Text);
+                int digitalSensorCount = int.Parse(txtDigitalSensorDevices.Text);
 
-            runLoop(analogSensorCount, digitalSensorCount);
+                runLoop(analogSensorCount, digitalSensorCount);
 
-            this.Hide();
-
+                this.Hide();
+                dAQSimulator.Closed += (s, args) => this.Close();
+                dAQSimulator.Show();
+            }
+            else
+            {
+                // Make a message box if any of the text fields are empty
+                MessageBox.Show("Please input text in all input fields", "Input Information", MessageBoxButtons.OK);
+            }
         }
 
         private void txtAnalogSensorDevices_Click(object sender, EventArgs e)
