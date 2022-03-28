@@ -23,6 +23,7 @@ namespace SensorApplication
         string DataForLogginReady;
         string LogginData;
         string path;
+        int countLogeed;
 
 
 
@@ -107,10 +108,12 @@ namespace SensorApplication
                 if (LogginData != null)
                 {
                     LogginData = LogginData + "\n" + DataForLogginReady;
+                    countLogeed++;
                 }
                 else 
                 {
                     LogginData = DataForLogginReady;
+                    countLogeed++;
                 }
             }
         }
@@ -153,7 +156,9 @@ namespace SensorApplication
                             using (StreamWriter file = new StreamWriter(saveFileDialog.FileName, true))
                             {
                                 path = Path.GetFullPath(saveFileDialog.FileName);
+                                txtFileName.Text = Path.GetFileName(saveFileDialog.FileName);
                                 file.WriteLine(LogginData);
+                                txtEntriesCount.Text = countLogeed.ToString();
                                 LogginData = null;
                                 btnLoggingOnFile.Enabled = false;
                             }
@@ -164,6 +169,7 @@ namespace SensorApplication
                         using (StreamWriter file = new StreamWriter(path, true))
                         {
                             file.WriteLine(LogginData);
+                            txtEntriesCount.Text = countLogeed.ToString();
                             LogginData = null;
                             btnLoggingOnFile.Enabled = false;
                         }
@@ -175,6 +181,16 @@ namespace SensorApplication
                 // Make a message box if any of the text fields are empty
                 MessageBox.Show("Please input text in all input fields", "Input Information", MessageBoxButtons.OK);
             }
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Please input text in all input fields to sart sampling and logging process.\nSampling process is automatic once the start sampling button is pressed.\n\nTo stop sapling process once started, please press stop sampling button.\nLogging will be a manual process. At the first time you have to select the output csv file location.", "Help", MessageBoxButtons.OK);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This is DAQ Simulation Application which is used for manually sampling and logging sensor values. \n\nThis generate sensor values randomly within defined limits to simulate sensor devices. Simulate collecting sensor values at sampling time and logging them on a csv file are performed by this application", "About", MessageBoxButtons.OK);
         }
     }
 }

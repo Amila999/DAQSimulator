@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DAQSimulator));
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.operationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNextSamplingTime = new System.Windows.Forms.TextBox();
             this.btnGetSampling = new System.Windows.Forms.Button();
@@ -41,6 +40,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnLoggingOnFile = new System.Windows.Forms.Button();
             this.txtNextLoggingTime = new System.Windows.Forms.TextBox();
+            this.txtFileName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.sensorValues = new System.Windows.Forms.Label();
@@ -58,6 +58,8 @@
             this.numDigitalSensorDevices = new System.Windows.Forms.Label();
             this.numAnalogSensorDevices = new System.Windows.Forms.Label();
             this.txtDigitalSensor = new System.Windows.Forms.Label();
+            this.txtEntriesCount = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -65,51 +67,49 @@
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // operationToolStripMenuItem
-            // 
-            this.operationToolStripMenuItem.Name = "operationToolStripMenuItem";
-            this.operationToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.operationToolStripMenuItem.Text = "Operation";
-            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.operationToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(647, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(827, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 30);
+            this.label1.Location = new System.Drawing.Point(8, 37);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 13);
+            this.label1.Size = new System.Drawing.Size(163, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Next Sampling Time (Sec)";
             // 
             // txtNextSamplingTime
             // 
-            this.txtNextSamplingTime.Location = new System.Drawing.Point(141, 27);
+            this.txtNextSamplingTime.Location = new System.Drawing.Point(188, 33);
+            this.txtNextSamplingTime.Margin = new System.Windows.Forms.Padding(4);
             this.txtNextSamplingTime.Name = "txtNextSamplingTime";
-            this.txtNextSamplingTime.Size = new System.Drawing.Size(53, 20);
+            this.txtNextSamplingTime.Size = new System.Drawing.Size(69, 22);
             this.txtNextSamplingTime.TabIndex = 2;
             this.txtNextSamplingTime.Tag = "";
             this.txtNextSamplingTime.Text = "0.9";
@@ -117,9 +117,10 @@
             // 
             // btnGetSampling
             // 
-            this.btnGetSampling.Location = new System.Drawing.Point(36, 64);
+            this.btnGetSampling.Location = new System.Drawing.Point(48, 79);
+            this.btnGetSampling.Margin = new System.Windows.Forms.Padding(4);
             this.btnGetSampling.Name = "btnGetSampling";
-            this.btnGetSampling.Size = new System.Drawing.Size(63, 38);
+            this.btnGetSampling.Size = new System.Drawing.Size(84, 47);
             this.btnGetSampling.TabIndex = 3;
             this.btnGetSampling.Text = "Start Sampling";
             this.btnGetSampling.UseVisualStyleBackColor = true;
@@ -131,18 +132,21 @@
             this.groupBox1.Controls.Add(this.btnStopSampling);
             this.groupBox1.Controls.Add(this.btnGetSampling);
             this.groupBox1.Controls.Add(this.txtNextSamplingTime);
-            this.groupBox1.Location = new System.Drawing.Point(54, 221);
+            this.groupBox1.Location = new System.Drawing.Point(72, 272);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(247, 119);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(329, 146);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sampling";
             // 
             // btnStopSampling
             // 
-            this.btnStopSampling.Location = new System.Drawing.Point(156, 64);
+            this.btnStopSampling.Location = new System.Drawing.Point(208, 79);
+            this.btnStopSampling.Margin = new System.Windows.Forms.Padding(4);
             this.btnStopSampling.Name = "btnStopSampling";
-            this.btnStopSampling.Size = new System.Drawing.Size(63, 38);
+            this.btnStopSampling.Size = new System.Drawing.Size(84, 47);
             this.btnStopSampling.TabIndex = 3;
             this.btnStopSampling.Text = "Stop Sampling";
             this.btnStopSampling.UseVisualStyleBackColor = true;
@@ -152,19 +156,25 @@
             // 
             this.groupBox2.Controls.Add(this.btnLoggingOnFile);
             this.groupBox2.Controls.Add(this.txtNextLoggingTime);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.txtEntriesCount);
+            this.groupBox2.Controls.Add(this.txtFileName);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(54, 414);
+            this.groupBox2.Location = new System.Drawing.Point(72, 490);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(247, 111);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(329, 157);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Logging";
             // 
             // btnLoggingOnFile
             // 
-            this.btnLoggingOnFile.Location = new System.Drawing.Point(72, 71);
+            this.btnLoggingOnFile.Location = new System.Drawing.Point(151, 90);
+            this.btnLoggingOnFile.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoggingOnFile.Name = "btnLoggingOnFile";
-            this.btnLoggingOnFile.Size = new System.Drawing.Size(92, 23);
+            this.btnLoggingOnFile.Size = new System.Drawing.Size(123, 28);
             this.btnLoggingOnFile.TabIndex = 2;
             this.btnLoggingOnFile.Text = "Logging on File";
             this.btnLoggingOnFile.UseVisualStyleBackColor = true;
@@ -172,20 +182,33 @@
             // 
             // txtNextLoggingTime
             // 
-            this.txtNextLoggingTime.Location = new System.Drawing.Point(141, 26);
+            this.txtNextLoggingTime.Location = new System.Drawing.Point(188, 32);
+            this.txtNextLoggingTime.Margin = new System.Windows.Forms.Padding(4);
             this.txtNextLoggingTime.Name = "txtNextLoggingTime";
-            this.txtNextLoggingTime.Size = new System.Drawing.Size(53, 20);
+            this.txtNextLoggingTime.Size = new System.Drawing.Size(69, 22);
             this.txtNextLoggingTime.TabIndex = 1;
             this.txtNextLoggingTime.Tag = "";
             this.txtNextLoggingTime.Text = "39";
             this.txtNextLoggingTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // txtFileName
+            // 
+            this.txtFileName.AutoSize = true;
+            this.txtFileName.Location = new System.Drawing.Point(38, 96);
+            this.txtFileName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(94, 16);
+            this.txtFileName.TabIndex = 0;
+            this.txtFileName.Text = "No file created";
+            this.txtFileName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 30);
+            this.label2.Location = new System.Drawing.Point(12, 37);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 13);
+            this.label2.Size = new System.Drawing.Size(155, 16);
             this.label2.TabIndex = 0;
             this.label2.Text = "Next Logging Time (Sec)";
             // 
@@ -193,9 +216,11 @@
             // 
             this.groupBox3.Controls.Add(this.sensorValues);
             this.groupBox3.Controls.Add(this.txtSensorNames);
-            this.groupBox3.Location = new System.Drawing.Point(335, 40);
+            this.groupBox3.Location = new System.Drawing.Point(447, 49);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(267, 485);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Size = new System.Drawing.Size(356, 597);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sensor Values";
@@ -203,27 +228,30 @@
             // sensorValues
             // 
             this.sensorValues.AutoSize = true;
-            this.sensorValues.Location = new System.Drawing.Point(145, 50);
+            this.sensorValues.Location = new System.Drawing.Point(193, 62);
+            this.sensorValues.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.sensorValues.Name = "sensorValues";
-            this.sensorValues.Size = new System.Drawing.Size(72, 13);
+            this.sensorValues.Size = new System.Drawing.Size(91, 16);
             this.sensorValues.TabIndex = 17;
             this.sensorValues.Text = "sensor values";
             // 
             // txtSensorNames
             // 
             this.txtSensorNames.AutoSize = true;
-            this.txtSensorNames.Location = new System.Drawing.Point(24, 50);
+            this.txtSensorNames.Location = new System.Drawing.Point(32, 62);
+            this.txtSensorNames.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtSensorNames.Name = "txtSensorNames";
-            this.txtSensorNames.Size = new System.Drawing.Size(42, 13);
+            this.txtSensorNames.Size = new System.Drawing.Size(57, 16);
             this.txtSensorNames.TabIndex = 17;
-            this.txtSensorNames.Text = "amount";
+            this.txtSensorNames.Text = "Sensors";
             // 
             // txtAnalogSensor
             // 
             this.txtAnalogSensor.AutoSize = true;
-            this.txtAnalogSensor.Location = new System.Drawing.Point(15, 30);
+            this.txtAnalogSensor.Location = new System.Drawing.Point(20, 37);
+            this.txtAnalogSensor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtAnalogSensor.Name = "txtAnalogSensor";
-            this.txtAnalogSensor.Size = new System.Drawing.Size(118, 13);
+            this.txtAnalogSensor.Size = new System.Drawing.Size(149, 16);
             this.txtAnalogSensor.TabIndex = 7;
             this.txtAnalogSensor.Text = "Analog Sensor Devices";
             // 
@@ -241,9 +269,11 @@
             this.groupBox4.Controls.Add(this.numAnalogSensorDevices);
             this.groupBox4.Controls.Add(this.txtDigitalSensor);
             this.groupBox4.Controls.Add(this.txtAnalogSensor);
-            this.groupBox4.Location = new System.Drawing.Point(54, 40);
+            this.groupBox4.Location = new System.Drawing.Point(72, 49);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(247, 139);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox4.Size = new System.Drawing.Size(329, 171);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Informations";
@@ -251,9 +281,10 @@
             // numDAQResolution
             // 
             this.numDAQResolution.AutoSize = true;
-            this.numDAQResolution.Location = new System.Drawing.Point(129, 94);
+            this.numDAQResolution.Location = new System.Drawing.Point(172, 116);
+            this.numDAQResolution.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.numDAQResolution.Name = "numDAQResolution";
-            this.numDAQResolution.Size = new System.Drawing.Size(33, 13);
+            this.numDAQResolution.Size = new System.Drawing.Size(40, 16);
             this.numDAQResolution.TabIndex = 16;
             this.numDAQResolution.Text = "value";
             this.numDAQResolution.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -261,18 +292,20 @@
             // txtDAQResolution
             // 
             this.txtDAQResolution.AutoSize = true;
-            this.txtDAQResolution.Location = new System.Drawing.Point(15, 94);
+            this.txtDAQResolution.Location = new System.Drawing.Point(20, 116);
+            this.txtDAQResolution.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtDAQResolution.Name = "txtDAQResolution";
-            this.txtDAQResolution.Size = new System.Drawing.Size(108, 13);
+            this.txtDAQResolution.Size = new System.Drawing.Size(135, 16);
             this.txtDAQResolution.TabIndex = 15;
             this.txtDAQResolution.Text = "DAQ Resolution (bits)";
             // 
             // numUpperVoltage
             // 
             this.numUpperVoltage.AutoSize = true;
-            this.numUpperVoltage.Location = new System.Drawing.Point(164, 72);
+            this.numUpperVoltage.Location = new System.Drawing.Point(219, 89);
+            this.numUpperVoltage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.numUpperVoltage.Name = "numUpperVoltage";
-            this.numUpperVoltage.Size = new System.Drawing.Size(21, 13);
+            this.numUpperVoltage.Size = new System.Drawing.Size(25, 16);
             this.numUpperVoltage.TabIndex = 14;
             this.numUpperVoltage.Text = "val";
             this.numUpperVoltage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -280,18 +313,20 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(180, 72);
+            this.label4.Location = new System.Drawing.Point(240, 89);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(14, 13);
+            this.label4.Size = new System.Drawing.Size(16, 16);
             this.label4.TabIndex = 13;
             this.label4.Text = "V";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(141, 72);
+            this.label5.Location = new System.Drawing.Point(188, 89);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(14, 13);
+            this.label5.Size = new System.Drawing.Size(16, 16);
             this.label5.TabIndex = 13;
             this.label5.Text = "V";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -299,18 +334,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(153, 72);
+            this.label3.Location = new System.Drawing.Point(204, 89);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(16, 13);
+            this.label3.Size = new System.Drawing.Size(18, 16);
             this.label3.TabIndex = 13;
             this.label3.Text = "to";
             // 
             // numLowerVoltage
             // 
             this.numLowerVoltage.AutoSize = true;
-            this.numLowerVoltage.Location = new System.Drawing.Point(126, 72);
+            this.numLowerVoltage.Location = new System.Drawing.Point(168, 89);
+            this.numLowerVoltage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.numLowerVoltage.Name = "numLowerVoltage";
-            this.numLowerVoltage.Size = new System.Drawing.Size(21, 13);
+            this.numLowerVoltage.Size = new System.Drawing.Size(25, 16);
             this.numLowerVoltage.TabIndex = 12;
             this.numLowerVoltage.Text = "val";
             this.numLowerVoltage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -318,45 +355,71 @@
             // txtDAQvoltage
             // 
             this.txtDAQvoltage.AutoSize = true;
-            this.txtDAQvoltage.Location = new System.Drawing.Point(15, 72);
+            this.txtDAQvoltage.Location = new System.Drawing.Point(20, 89);
+            this.txtDAQvoltage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtDAQvoltage.Name = "txtDAQvoltage";
-            this.txtDAQvoltage.Size = new System.Drawing.Size(96, 13);
+            this.txtDAQvoltage.Size = new System.Drawing.Size(117, 16);
             this.txtDAQvoltage.TabIndex = 11;
             this.txtDAQvoltage.Text = "DAQ Input Voltage";
             // 
             // numDigitalSensorDevices
             // 
             this.numDigitalSensorDevices.AutoSize = true;
-            this.numDigitalSensorDevices.Location = new System.Drawing.Point(155, 50);
+            this.numDigitalSensorDevices.Location = new System.Drawing.Point(207, 62);
+            this.numDigitalSensorDevices.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.numDigitalSensorDevices.Name = "numDigitalSensorDevices";
-            this.numDigitalSensorDevices.Size = new System.Drawing.Size(42, 13);
+            this.numDigitalSensorDevices.Size = new System.Drawing.Size(51, 16);
             this.numDigitalSensorDevices.TabIndex = 10;
             this.numDigitalSensorDevices.Text = "amount";
             // 
             // numAnalogSensorDevices
             // 
             this.numAnalogSensorDevices.AutoSize = true;
-            this.numAnalogSensorDevices.Location = new System.Drawing.Point(155, 30);
+            this.numAnalogSensorDevices.Location = new System.Drawing.Point(207, 37);
+            this.numAnalogSensorDevices.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.numAnalogSensorDevices.Name = "numAnalogSensorDevices";
-            this.numAnalogSensorDevices.Size = new System.Drawing.Size(42, 13);
+            this.numAnalogSensorDevices.Size = new System.Drawing.Size(51, 16);
             this.numAnalogSensorDevices.TabIndex = 9;
             this.numAnalogSensorDevices.Text = "amount";
             // 
             // txtDigitalSensor
             // 
             this.txtDigitalSensor.AutoSize = true;
-            this.txtDigitalSensor.Location = new System.Drawing.Point(15, 50);
+            this.txtDigitalSensor.Location = new System.Drawing.Point(20, 62);
+            this.txtDigitalSensor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtDigitalSensor.Name = "txtDigitalSensor";
-            this.txtDigitalSensor.Size = new System.Drawing.Size(114, 13);
+            this.txtDigitalSensor.Size = new System.Drawing.Size(144, 16);
             this.txtDigitalSensor.TabIndex = 8;
             this.txtDigitalSensor.Text = "Digital Sensor Devices";
             // 
+            // txtEntriesCount
+            // 
+            this.txtEntriesCount.AutoSize = true;
+            this.txtEntriesCount.Location = new System.Drawing.Point(118, 122);
+            this.txtEntriesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtEntriesCount.Name = "txtEntriesCount";
+            this.txtEntriesCount.Size = new System.Drawing.Size(14, 16);
+            this.txtEntriesCount.TabIndex = 0;
+            this.txtEntriesCount.Text = "0";
+            this.txtEntriesCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(38, 122);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 16);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Entry count";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // DAQSimulator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(647, 558);
+            this.ClientSize = new System.Drawing.Size(827, 663);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -364,6 +427,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DAQSimulator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DAQSimulator";
@@ -384,9 +448,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem operationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label label1;
@@ -414,5 +475,9 @@
         public System.Windows.Forms.TextBox txtNextSamplingTime;
         private System.Windows.Forms.Button btnStopSampling;
         public System.Windows.Forms.TextBox txtNextLoggingTime;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Label txtFileName;
+        private System.Windows.Forms.Label txtEntriesCount;
+        private System.Windows.Forms.Label label6;
     }
 }
