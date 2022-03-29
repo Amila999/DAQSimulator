@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace SensorApplication
@@ -47,8 +48,8 @@ namespace SensorApplication
 
                 //Generate sensor names string
 
-                int analogSensorCount = int.Parse(txtAnalogSensorDevices.Text);
-                int digitalSensorCount = int.Parse(txtDigitalSensorDevices.Text);
+                int analogSensorCount = int.Parse(txtAnalogSensorDevices.Text, CultureInfo.InvariantCulture);
+                int digitalSensorCount = int.Parse(txtDigitalSensorDevices.Text, CultureInfo.InvariantCulture);
 
                 runLoop(analogSensorCount, digitalSensorCount);
 

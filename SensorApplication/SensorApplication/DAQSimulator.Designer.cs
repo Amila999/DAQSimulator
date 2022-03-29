@@ -40,6 +40,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnLoggingOnFile = new System.Windows.Forms.Button();
             this.txtNextLoggingTime = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtEntriesCount = new System.Windows.Forms.Label();
             this.txtFileName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -58,8 +60,6 @@
             this.numDigitalSensorDevices = new System.Windows.Forms.Label();
             this.numAnalogSensorDevices = new System.Windows.Forms.Label();
             this.txtDigitalSensor = new System.Windows.Forms.Label();
-            this.txtEntriesCount = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -70,27 +70,26 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 34);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.helpToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(827, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1034, 38);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            //this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 34);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -112,7 +111,7 @@
             this.txtNextSamplingTime.Size = new System.Drawing.Size(69, 22);
             this.txtNextSamplingTime.TabIndex = 2;
             this.txtNextSamplingTime.Tag = "";
-            this.txtNextSamplingTime.Text = "0.9";
+            this.txtNextSamplingTime.Text = "1.6";
             this.txtNextSamplingTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnGetSampling
@@ -188,8 +187,30 @@
             this.txtNextLoggingTime.Size = new System.Drawing.Size(69, 22);
             this.txtNextLoggingTime.TabIndex = 1;
             this.txtNextLoggingTime.Tag = "";
-            this.txtNextLoggingTime.Text = "39";
+            this.txtNextLoggingTime.Text = "21";
             this.txtNextLoggingTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(38, 122);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 16);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Entry count";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtEntriesCount
+            // 
+            this.txtEntriesCount.AutoSize = true;
+            this.txtEntriesCount.Location = new System.Drawing.Point(118, 122);
+            this.txtEntriesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtEntriesCount.Name = "txtEntriesCount";
+            this.txtEntriesCount.Size = new System.Drawing.Size(14, 16);
+            this.txtEntriesCount.TabIndex = 0;
+            this.txtEntriesCount.Text = "0";
+            this.txtEntriesCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtFileName
             // 
@@ -392,28 +413,6 @@
             this.txtDigitalSensor.TabIndex = 8;
             this.txtDigitalSensor.Text = "Digital Sensor Devices";
             // 
-            // txtEntriesCount
-            // 
-            this.txtEntriesCount.AutoSize = true;
-            this.txtEntriesCount.Location = new System.Drawing.Point(118, 122);
-            this.txtEntriesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txtEntriesCount.Name = "txtEntriesCount";
-            this.txtEntriesCount.Size = new System.Drawing.Size(14, 16);
-            this.txtEntriesCount.TabIndex = 0;
-            this.txtEntriesCount.Text = "0";
-            this.txtEntriesCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(38, 122);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 16);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Entry count";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // DAQSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -431,7 +430,6 @@
             this.Name = "DAQSimulator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DAQSimulator";
-            //this.Load += new System.EventHandler(this.DAQSimulator_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

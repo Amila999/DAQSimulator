@@ -2,6 +2,7 @@
 using System.Timers;
 using System.Windows.Forms;
 using System.IO;
+using System.Globalization;
 
 namespace SensorApplication
 {
@@ -54,13 +55,12 @@ namespace SensorApplication
         {
             string analogSvalue = "";
             string digitalSvalue = "";
-            int resolutionNum = int.Parse(numDAQResolution.Text);
-            float loweVoltageNum = float.Parse(numLowerVoltage.Text);
-            float upperVoltageNum = float.Parse(numUpperVoltage.Text);
-            int analogSensorCount = int.Parse(numAnalogSensorDevices.Text);
-            int digitalSensorCount = int.Parse(numDigitalSensorDevices.Text);
-
-            sensorValues.Text = runLoopForSensorValue(analogSvalue, digitalSvalue, analogSensorCount, digitalSensorCount, resolutionNum, loweVoltageNum, upperVoltageNum);
+            int resolutionNum = int.Parse(numDAQResolution.Text, CultureInfo.InvariantCulture);
+            float loweVoltageNum = float.Parse(numLowerVoltage.Text, CultureInfo.InvariantCulture);
+            float upperVoltageNum = float.Parse(numUpperVoltage.Text, CultureInfo.InvariantCulture);
+            int analogSensorCount = int.Parse(numAnalogSensorDevices.Text, CultureInfo.InvariantCulture);
+            int digitalSensorCount = int.Parse(numDigitalSensorDevices.Text, CultureInfo.InvariantCulture);
+            sensorValues.Invoke((MethodInvoker)(() => sensorValues.Text = runLoopForSensorValue(analogSvalue, digitalSvalue, analogSensorCount, digitalSensorCount, resolutionNum, loweVoltageNum, upperVoltageNum)));
 
         }
 
@@ -73,7 +73,7 @@ namespace SensorApplication
                 btnGetSampling.Enabled = false;
                 btnStopSampling.Enabled = true;
                 timerSample = new System.Timers.Timer();
-                timerSample.Interval = double.Parse(txtNextSamplingTime.Text) * 1000;
+                timerSample.Interval = double.Parse(txtNextSamplingTime.Text, CultureInfo.InvariantCulture) * 1000;
                 timerSample.Elapsed += OnTimeEvent;
                 timerSample.Start();
 
@@ -89,16 +89,16 @@ namespace SensorApplication
 
         private void OnTimeEvent(object sender, ElapsedEventArgs e)
         {
-            timeSpent = timeSpent + double.Parse(txtNextSamplingTime.Text) * 1000;
+            timeSpent = timeSpent + double.Parse(txtNextSamplingTime.Text, CultureInfo.InvariantCulture) * 1000;
             getSensorData();
             loggingTime = double.Parse(txtNextLoggingTime.Text) * 1000;
 
-            int previousValue = (int)Math.Round((timeSpent - double.Parse(txtNextSamplingTime.Text) * 1000) / loggingTime);
+            int previousValue = (int)Math.Round((timeSpent - double.Parse(txtNextSamplingTime.Text, CultureInfo.InvariantCulture) * 1000) / loggingTime);
             int newValue = (int)Math.Round(timeSpent / loggingTime);
 
             if (newValue > previousValue & tempDataForLogginReady != null)
             {
-                btnLoggingOnFile.Enabled = true;
+                btnLoggingOnFile.Invoke((MethodInvoker)(()=> btnLoggingOnFile.Enabled = true));
                 String TodayTime = DateTime.Now.ToLongTimeString();
                 DataForLogginReady = TodayTime + "," + tempDataForLogginReady;
                 if (LogginData != null)
