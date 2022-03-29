@@ -35,26 +35,6 @@ namespace SensorApplication
 
         DAQSimulator dAQSimulator = new DAQSimulator();
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtAnalogSensorDevices.Text) & !string.IsNullOrEmpty(txtDigitalSensorDevices.Text) & !string.IsNullOrEmpty(txtLowerVoltage.Text) & !string.IsNullOrEmpty(txtUpperVoltage.Text) & !string.IsNullOrEmpty(txtDAQResolution.Text))
@@ -81,16 +61,6 @@ namespace SensorApplication
                 // Make a message box if any of the text fields are empty
                 MessageBox.Show("Please input text in all input fields", "Input Information", MessageBoxButtons.OK);
             }
-        }
-
-        private void txtAnalogSensorDevices_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

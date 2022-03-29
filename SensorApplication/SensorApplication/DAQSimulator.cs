@@ -63,10 +63,6 @@ namespace SensorApplication
             sensorValues.Text = runLoopForSensorValue(analogSvalue, digitalSvalue, analogSensorCount, digitalSensorCount, resolutionNum, loweVoltageNum, upperVoltageNum);
 
         }
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
 
         private void btnGetSampling_Click(object sender, EventArgs e)
@@ -116,16 +112,6 @@ namespace SensorApplication
                     countLogeed++;
                 }
             }
-        }
-
-        private void sensorValuesField_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DAQSimulator_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnStopSampling_Click(object sender, EventArgs e)
