@@ -55,11 +55,13 @@ namespace SensorApplication
         {
             string analogSvalue = "";
             string digitalSvalue = "";
+            //InvariantCulture need to be used to avoid confusion with . and ,
             int resolutionNum = int.Parse(numDAQResolution.Text, CultureInfo.InvariantCulture);
             float loweVoltageNum = float.Parse(numLowerVoltage.Text, CultureInfo.InvariantCulture);
             float upperVoltageNum = float.Parse(numUpperVoltage.Text, CultureInfo.InvariantCulture);
             int analogSensorCount = int.Parse(numAnalogSensorDevices.Text, CultureInfo.InvariantCulture);
             int digitalSensorCount = int.Parse(numDigitalSensorDevices.Text, CultureInfo.InvariantCulture);
+            //Multithread error fixed using Invoke
             sensorValues.Invoke((MethodInvoker)(() => sensorValues.Text = runLoopForSensorValue(analogSvalue, digitalSvalue, analogSensorCount, digitalSensorCount, resolutionNum, loweVoltageNum, upperVoltageNum)));
 
         }
