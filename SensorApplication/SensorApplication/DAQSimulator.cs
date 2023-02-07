@@ -78,7 +78,6 @@ namespace SensorApplication
                 timerSample.Interval = double.Parse(txtNextSamplingTime.Text, CultureInfo.InvariantCulture) * 1000;
                 timerSample.Elapsed += OnTimeEvent;
                 timerSample.Start();
-
                 double loggingTime = double.Parse(txtNextLoggingTime.Text) * 1000;
             }
 
@@ -173,11 +172,13 @@ namespace SensorApplication
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //When help clicked
             MessageBox.Show("Please input text in all input fields to sart sampling and logging process.\nSampling process is automatic once the start sampling button is pressed.\n\nTo stop sapling process once started, please press stop sampling button.\nLogging will be a manual process. At the first time you have to select the output csv file location.", "Help", MessageBoxButtons.OK);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //When about clicked
             MessageBox.Show("This is DAQ Simulation Application which is used for manually sampling and logging sensor values. \n\nThis generate sensor values randomly within defined limits to simulate sensor devices. Simulate collecting sensor values at sampling time and logging them on a csv file are performed by this application", "About", MessageBoxButtons.OK);
         }
     }
