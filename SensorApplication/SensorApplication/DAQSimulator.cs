@@ -26,8 +26,6 @@ namespace SensorApplication
         string path;
         int countLogeed;
 
-
-
         public string runLoopForSensorValue(string analogSvalue, string digitalSvalue, int analogSCount, int digitalSCount, int resolution, float lowerVol, float upperVol)
         {
             for (int i = 0; i < analogSCount; i++)
@@ -65,7 +63,6 @@ namespace SensorApplication
             sensorValues.Invoke((MethodInvoker)(() => sensorValues.Text = runLoopForSensorValue(analogSvalue, digitalSvalue, analogSensorCount, digitalSensorCount, resolutionNum, loweVoltageNum, upperVoltageNum)));
 
         }
-
 
         private void btnGetSampling_Click(object sender, EventArgs e)
         {
