@@ -99,7 +99,7 @@ namespace SensorApplication
             if (newValue > previousValue & tempDataForLogginReady != null)
             {
                 btnLoggingOnFile.Invoke((MethodInvoker)(()=> btnLoggingOnFile.Enabled = true));
-                String TodayTime = DateTime.Now.ToLongTimeString();
+                String TodayTime = DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt"); //New Date format
                 DataForLogginReady = TodayTime + "," + tempDataForLogginReady;
                 if (LogginData != null)
                 {
