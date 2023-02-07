@@ -127,6 +127,7 @@ namespace SensorApplication
 
                 if (LogginData != null)
                 {
+                    //If path is not present, open dialog to choose file path
                     if (path == null)
                     {
                         SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -150,6 +151,7 @@ namespace SensorApplication
                     }
                     else
                     {
+                        //If file path is present, append new data
                         using (StreamWriter file = new StreamWriter(path, true))
                         {
                             file.WriteLine(LogginData);
