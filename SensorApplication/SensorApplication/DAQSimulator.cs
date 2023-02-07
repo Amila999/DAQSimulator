@@ -60,6 +60,7 @@ namespace SensorApplication
             float upperVoltageNum = float.Parse(numUpperVoltage.Text, CultureInfo.InvariantCulture);
             int analogSensorCount = int.Parse(numAnalogSensorDevices.Text, CultureInfo.InvariantCulture);
             int digitalSensorCount = int.Parse(numDigitalSensorDevices.Text, CultureInfo.InvariantCulture);
+            //Multithread error fixed using Invoke
             sensorValues.Invoke((MethodInvoker)(() => sensorValues.Text = runLoopForSensorValue(analogSvalue, digitalSvalue, analogSensorCount, digitalSensorCount, resolutionNum, loweVoltageNum, upperVoltageNum)));
 
         }
